@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>idleTimeout - jQuery UI Example Page</title>
+		<link type="text/css" href="../jquery/fancyapps-fancybox-v2.1.4/source/jquery.fancybox.css" rel="stylesheet" />	
+		<script type="text/javascript" src="../jquery/jquery-1.9.1.min.js"></script>		
+		<script type="text/javascript" src="../jquery/fancyapps-fancybox-v2.1.4/source/jquery.fancybox.js"></script>
+		<script src="jquery-fancybox.idleTimeout.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript" charset="utf-8">
+		  $(document).ready(function(){
+		   $(document).idleTimeout({
+		     inactivity: 30000, 
+     		 noconfirm: 10000, 
+     		 sessionAlive: 10000
+		   });
+		  });
+		</script>
+		
+	</head>
+	<body>
+	<h1>idleTimeout - timeout test</h1>
+	  
+	  Timeout Clock
+
+	</body>
+</html>
+
+
