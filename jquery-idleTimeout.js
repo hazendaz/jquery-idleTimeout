@@ -5,22 +5,22 @@
 //## to Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
 //######
 
-(function($){
+$(document).ready(function() {
  $.fn.idleTimeout = function(options) {
     var defaults = {
-      inactivity: 1200000, //20 Minutes
-      noconfirm: 10000, //10 Seconds
-      sessionAlive: 30000, //10 Minutes
+      inactivity: 900000, // 15 Minutes
+      noconfirm: 10000, // 10 Seconds
+      sessionAlive: 300000, // 5 Minutes
       redirect_url: '/js_sandbox/',
       click_reset: true,
       alive_url: '/js_sandbox/',
       logout_url: '/js_sandbox/',
       showDialog: true,
-	  dialogTitle: 'Auto Logout',
-	  dialogText: 'You are about to be signed out due to inactivity.',
-	  dialogButton: 'Stay Logged In'
-    }
-    
+      dialogTitle: 'Auto Logout',
+      dialogText: 'You are about to be signed out due to inactivity.',
+      dialogButton: 'Stay Logged In'
+    };
+
     //##############################
     //## Private Variables
     //##############################
@@ -31,82 +31,71 @@
     //##############################
     //## Private Functions
     //##############################
-    var start_liveTimeout = function()
-    {
+    var start_liveTimeout = function() {
       clearTimeout(liveTimeout);
       clearTimeout(confTimeout);
       liveTimeout = setTimeout(logout, opts.inactivity);
-      
-      if(opts.sessionAlive)
-      {
+
+      if(opts.sessionAlive) {
         clearTimeout(sessionTimeout);
         sessionTimeout = setTimeout(keep_session, opts.sessionAlive);
       }
-    }
-    
-    var logout = function()
-    {
+    };
+
+    var logout = function() {
       var my_dialog;
 	  var buttonsOpts = {};
-	  
+
       confTimeout = setTimeout(redirect, opts.noconfirm);
-	  
+
 	  buttonsOpts[opts.dialogButton] = function(){
 		my_dialog.dialog('close');
 		stay_logged_in();
 	  }
-	  
-      if(opts.showDialog)
-      {
+
+      if(opts.showDialog) {
         my_dialog = $(modal).dialog({
           buttons: buttonsOpts,
           modal: true,
           title: opts.dialogTitle
         });
       }
-    }
-    
-    var redirect = function()
-    {
-      if(opts.logout_url)
-      {
+    };
+
+    var redirect = function() {
+      if(opts.logout_url) {
         $.get(opts.logout_url);
       }
       window.location.href = opts.redirect_url;
-    }
-    
-    var stay_logged_in = function(el)
-    {
+    };
+
+    var stay_logged_in = function(el) {
       start_liveTimeout();
-      if(opts.alive_url)
-      {
+      if(opts.alive_url) {
         $.get(opts.alive_url);
       }
-    }
-    
-    var keep_session = function()
-    {
+    };
+
+    var keep_session = function() {
       $.get(opts.alive_url);
       clearTimeout(sessionTimeout);
       sessionTimeout = setTimeout(keep_session, opts.sessionAlive);
-    } 
-    
+    };
+
     //###############################
-    //Build & Return the instance of the item as a plugin
+    // Build & Return the instance of the item as a plugin
     // This is basically your construct.
     //###############################
     return this.each(function() {
       obj = $(this);
       start_liveTimeout();
-      if(opts.click_reset)
-      {
-        $(document).bind('click', start_liveTimeout);
+      if(opts.click_reset) {
+        $(document).on('click', start_liveTimeout);
       }
-      if(opts.sessionAlive)
-      {
+      if(opts.sessionAlive) {
         keep_session();
       }
     });
-    
- };
-})(jQuery);
+
+ }
+});

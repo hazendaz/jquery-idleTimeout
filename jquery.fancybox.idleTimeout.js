@@ -8,14 +8,17 @@
 $(document).ready(function() {
  $.fn.idleTimeout = function(options) {
     var defaults = {
-      inactivity: 60000, // 1 Minute
+      inactivity: 900000, // 15 Minutes
       noconfirm: 10000, // 10 Seconds
       sessionAlive: 300000, // 5 Minutes
       redirect_url: '/js_sandbox/',
       click_reset: true,
       alive_url: '/js_sandbox/',
       logout_url: '/js_sandbox/',
-      showDialog: true
+      showDialog: true,
+      dialogTitle: 'Auto Logout',
+      dialogText: 'You are about to be signed out due to inactivity.',
+      dialogButton: 'Stay Logged In'
     };
 
     //##############################
@@ -28,11 +31,14 @@ $(document).ready(function() {
         var ret;
         $.fancybox({
             modal : true,
+            title : : "<div>"
+                    + "<p>+opts.dialogTitle+</p>"
+                    + "</div>"
             content : "<div style=\"width:250px;height:100px;\">"
-                    + "<p>You are about to be signed out due to inactivity.</p>"
+                    + "<p>+opts.dialogText+</p>"
                     + "</div>"
                     + "<div style=\"text-align:center;margin-top:20px;\">"
-                    + "<input id=\"fancyConfirm_ok\" style=\"margin:3px;padding:1px;width:85px;height:20px;\" type=\"submit\" value=\"Stay Logged In\">"
+                    + "<input id=\"fancyConfirm_ok\" style=\"margin:3px;padding:1px;width:85px;height:20px;\" type=\"submit\" value=\"+dialogButton+\">"
                     + "<input id=\"fancyConfirm_cancel\" style=\"margin:3px;padding:1px;width:75px;height:20px;\" type=\"button\" value=\"Logout\">"
                     + "</div>",
             afterShow : function() {
