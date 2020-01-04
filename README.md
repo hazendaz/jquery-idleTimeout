@@ -5,7 +5,7 @@ idle Activity Timeout and logut redirect for jQuery
 
 ## Demo
 
-Note:  This uses the jQuery UI dialog, and UI themes.  I am working on a non UI version – but it may be a while
+Note:  This uses the jQuery UI dialog, and UI themes.  A secondary copy works on fancybox rather than jquery ui.
 
 I have an [active demo here](http://www.philpalmieri.com/js_sandbox/timedLogout/) – it is running on a 30 second timer for the logout, and if you open firebug you will see the keep alive firing every 10 seconds.
 
