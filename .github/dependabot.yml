@@ -1,5 +1,5 @@
 #
-# dependency-plugin-tracker (https://github.com/hazendaz/dependency-plugin-tracker)
+# jquery-idleTimeout (https://github.com/hazendaz/jquery-idleTimeout)
 #
 # Copyright 2011-2020 Hazendaz.
 #
@@ -14,6 +14,10 @@
 
 version: 2
 updates:
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: daily
 - package-ecosystem: maven
   directory: "/"
   schedule:
