@@ -1,7 +1,8 @@
-# jquery-idleTimeout - ARCHIVE - DO NOT USE THIS PLUGIN!!!! ITS OLD AND LONG DEAD
-## use the much newer/improved fork https://github.com/JillElaine/jquery-idleTimeout
+# jquery-idleTimeout
 
-idle Activity Timeout and logut redirect for jQuery
+![hazendaz](src/site/resources/images/hazendaz-banner.jpg)
+
+idle Activity Timeout and logut redirect for jQuery using 'fancyapps'
 
 ## Demo
 
@@ -39,3 +40,4 @@ I have an [active demo here](http://www.philpalmieri.com/js_sandbox/timedLogout/
 - *dialogTitle: ‘Auto Logout’* //Title for the notice dialog 
 - *dialogText: ‘You are about to be signed out due to inactivity.’* //Content text for the notice dialog
 - *dialogButton: ‘Stay Logged In’* //Button label to stay logged in
+
